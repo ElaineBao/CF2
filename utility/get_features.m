@@ -13,8 +13,9 @@ sz_window = size(cos_window);
 
 % Preprocessing
 img = single(im);        % note: [0, 255] range
-img = imResample(img, net.normalization.imageSize(1:2));
-img = img - net.normalization.averageImage;
+imgSize=net.meta.normalization.imageSize(1:2);
+img = imResample(img, imgSize);
+img = img - repmat(net.meta.normalization.averageImage,imgSize);
 if enableGPU, img = gpuArray(img); end
 
 % Run the CNN

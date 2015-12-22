@@ -150,7 +150,8 @@ for i=1:n
   res(i).time = tic ;
   switch l.type
     case 'conv'
-      res(i+1).x = vl_nnconv(res(i).x, l.filters, l.biases, 'pad', l.pad, 'stride', l.stride) ;
+%       res(i+1).x = vl_nnconv(res(i).x, l.filters, l.biases, 'pad', l.pad, 'stride', l.stride) ;
+        res(i+1).x = vl_nnconv(res(i).x, l.weights{1,1}, l.weights{1,2}, 'pad', l.pad, 'stride', l.stride) ;
     case 'pool'
       res(i+1).x = vl_nnpool(res(i).x, l.pool, 'pad', l.pad, 'stride', l.stride, 'method', l.method) ;
     case 'normalize'
